@@ -15,6 +15,7 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import { ChevronDown, ChevronRight, Search, Loader2, CheckCircle2, XCircle } from 'lucide-react';
+import { Response } from '@/components/ai-elements/response';
 
 // Expandable search result component with shadcn
 function SearchResult({ data }: { 
@@ -202,13 +203,16 @@ export default function Chat() {
                         {message.parts.map((part, i) => {
                           switch (part.type) {
                             case 'text':
+                              const isStreaming = status === 'streaming' && message.id === messages[messages.length - 1]?.id;
+                              
                               return (
-                                <div 
-                                  key={`${message.id}-${i}`} 
-                                  className="prose prose-sm dark:prose-invert max-w-none whitespace-pre-wrap text-foreground"
+                                <Response 
+                                  key={`${message.id}-${i}`}
+                                  isAnimating={isStreaming}
+                                  className="prose prose-sm dark:prose-invert max-w-none text-foreground"
                                 >
-                                  {parseTextWithLinks(part.text)}
-                                </div>
+                                  {part.text}
+                                </Response>
                               );
                             
                             case 'data-search-result':
