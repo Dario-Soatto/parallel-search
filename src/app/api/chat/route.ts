@@ -55,7 +55,7 @@ When a user asks a complex question:
 
               // Start all searches immediately (don't await yet)
               const searchPromises = searchQueries.map(async (item: { query: string; searchDepth: 'basic' | 'advanced' }, index: number) => {
-                const searchId = `search-${index}`;
+                const searchId = `search-${crypto.randomUUID()}`;
                 
                 // When starting search:
                 writer.write({
