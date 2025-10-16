@@ -6,6 +6,7 @@ export type MyUIMessage = UIMessage<
     'search-result': {
       query: string;
       status: 'searching' | 'complete' | 'error';
+      searchDepth?: 'basic' | 'advanced';
       sources?: Array<{
         title: string;
         url: string;
