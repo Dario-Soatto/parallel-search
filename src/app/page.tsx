@@ -36,7 +36,7 @@ function SearchResult({ data }: {
 
   const getStatusBadge = () => {
     const depthBadge = data.data.searchDepth && (
-      <Badge variant="outline" className="ml-1 text-xs">
+      <Badge variant="outline" className="ml-2 text-xs">
         {data.data.searchDepth === 'advanced' ? '🔬 Advanced' : '⚡ Basic'}
       </Badge>
     );
@@ -45,15 +45,15 @@ function SearchResult({ data }: {
       case 'searching':
         return (
           <>
-            <Badge variant="outline" className="ml-2">Searching...</Badge>
             {depthBadge}
+            <Badge variant="outline" className="ml-1">Searching...</Badge>
           </>
         );
       case 'complete':
         return (
           <>
-            <Badge variant="default" className="ml-2 bg-green-600">Complete</Badge>
             {depthBadge}
+            <Badge variant="default" className="ml-1 bg-green-600">Complete</Badge>
           </>
         );
       case 'error':
